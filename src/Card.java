@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Card {
     //Instance variables - the attributes we will model in the class
@@ -15,17 +16,28 @@ public class Card {
 
     public Card(String face, String suit, int faceValue)
     {
-        faceName = face;
-        this.suit = suit;
-        this.faceValue = faceValue;
+        setFaceName(face);
+        setSuit(suit);
+        setFaceValue(faceValue);
     }
 
     public String getFaceName() {
         return faceName;
     }
 
+    /**
+     * This will ensure that the face name represents a valid face name.
+     * @param faceName - two, three, four,...,ten, jack, queen, king, ace
+     */
     public void setFaceName(String faceName) {
-        this.faceName = faceName;
+        faceName = faceName.toLowerCase();
+
+        List<String> validFaceNames = Arrays.asList("two","three","four","five","six","seven","eight",
+                                                    "nine","ten","jack","queen","king","ace");
+        if (validFaceNames.contains(faceName))
+            this.faceName = faceName;
+        else
+            throw new IllegalArgumentException(faceName +" is not valid, choose from: "+ validFaceNames);
     }
 
     public String getSuit() {
@@ -38,6 +50,7 @@ public class Card {
      * @param suit
      */
     public void setSuit(String suit) {
+        suit = suit.toLowerCase();
         List<String> validSuits = Arrays.asList("hearts","diamonds","spades","clubs");
         if (validSuits.contains(suit))
             this.suit = suit;
@@ -49,8 +62,15 @@ public class Card {
         return faceValue;
     }
 
+    /**
+     *This represents the card value is between 2-14 and sets the instance variable
+     * @param faceValue
+     */
     public void setFaceValue(int faceValue) {
-        this.faceValue = faceValue;
+        if (faceValue>=2 && faceValue<=14)
+            this.faceValue = faceValue;
+        else
+            throw new IllegalArgumentException("face value must be 2-14 inclusive");
     }
 
     public String toString()
