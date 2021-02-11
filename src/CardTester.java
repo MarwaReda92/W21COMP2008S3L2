@@ -8,5 +8,19 @@ public class CardTester {
         System.out.println(aceOfSpades);
         System.out.println(twoOfHearts);
         System.out.println(crazyCard);
+
+        DeckOfCards deck = new DeckOfCards();
+        System.out.printf("%nThe deck of cards has %d cards in it%n", deck.getNumOfCardsInDeck());
+
+        deck.shuffle();
+
+        System.out.println("Here are the first 5 cards:");
+        System.out.println(deck.dealTopCard());
+        System.out.println(deck.dealTopCard());
+        System.out.println(deck.dealTopCard());
+        System.out.println(deck.dealTopCard());
+        System.out.println(deck.dealTopCard());
+
+        System.out.printf("%nThe deck of cards has %d cards in it%n", deck.getNumOfCardsInDeck());
     }
 }
