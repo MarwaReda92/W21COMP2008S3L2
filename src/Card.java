@@ -24,6 +24,13 @@ public class Card {
     public String getFaceName() {
         return faceName;
     }
+    /**
+    * This returns a list of all the valid face names
+    */
+    public static List<String> getFaceNames(){
+        return Arrays.asList("two","three","four","five","six","seven","eight",
+                "nine","ten","jack","queen","king","ace");
+    }
 
     /**
      * This will ensure that the face name represents a valid face name.
@@ -32,8 +39,7 @@ public class Card {
     public void setFaceName(String faceName) {
         faceName = faceName.toLowerCase();
 
-        List<String> validFaceNames = Arrays.asList("two","three","four","five","six","seven","eight",
-                                                    "nine","ten","jack","queen","king","ace");
+        List<String> validFaceNames = getFaceNames();
         if (validFaceNames.contains(faceName))
             this.faceName = faceName;
         else
@@ -51,11 +57,15 @@ public class Card {
      */
     public void setSuit(String suit) {
         suit = suit.toLowerCase();
-        List<String> validSuits = Arrays.asList("hearts","diamonds","spades","clubs");
+        List<String> validSuits = getSuits();
         if (validSuits.contains(suit))
             this.suit = suit;
         else
             throw new IllegalArgumentException(suit + " is not valid, valid options are: "+validSuits);
+    }
+
+    public static List<String> getSuits(){
+        return Arrays.asList("hearts","diamonds","spades","clubs");
     }
 
     public int getFaceValue() {
@@ -64,7 +74,7 @@ public class Card {
 
     /**
      *This represents the card value is between 2-14 and sets the instance variable
-     * @param faceValue
+     * @param faceValue (values 2-14)
      */
     public void setFaceValue(int faceValue) {
         if (faceValue>=2 && faceValue<=14)
